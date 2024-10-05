@@ -1,27 +1,154 @@
 body {
-    margin: 0; /* Remove default margin */
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevent scrolling */
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
     
     background-image: url('fridge.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed; /* Fixes the background in place */
+    background-attachment: fixed;
 }
 
-.image-button {
-    width: 150px;               /* Button width */
-    height: 50px;               /* Button height */
-    border: none;               /* Remove borders */
-    background-image: url('button-default.jpg'); /* Default button image */
-    background-size: cover;     /* Ensures image covers the button area */
+.shake-button {
+    width: 250px;
+    height: 250px;
+    background-image: url('cabbage.png');
+    background-color: transparent; 
+    background-size: inherit;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.shake-button:hover {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+
+.form-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+input {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.note-button {
+    width: 250px;
+    height: 250px;
+    background-image: url('note.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    cursor: pointer;            /* Mouse pointer shows it's clickable */
-    transition: background-image 0.3s ease; /* Smooth transition */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.image-button:hover {
-    background-image: url('button-hover.jpg'); /* Image on hover */
+.note-button:hover {
+    opacity: 80%;
+}
+
+.form-container {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    font-size: 16px;
+}
+
+.form-container {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    height: 200px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-image: url('note.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    color: #333;
+    font-weight: bold;
+}
+
+input::placeholder {
+    color: #666;
+    font-weight: bold;
+}
+
+button {
+    position: absolute;
+    top: 450px;
+    left: 50px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#field1 {
+    top: 50px;
+    left: 50px;
+}
+
+#field2 {
+    top: 150px;
+    left: 150px;
+}
+
+#field3 {
+    top: 250px;
+    left: 250px;
+}
+
+#field4 {
+    top: 350px;
+    left: 350px;
+}
+
+input:focus {
+    border: none;
+    outline: none;
 }
