@@ -45,9 +45,9 @@ def chat(message, client):
 def meals_ingredients(count, ingredient_limit, price, calories):
     return chat(PROMPT_RECIPE.format(count=count, ingredient_limit=ingredient_limit, adjective_price = get_budget_adj(price), daily_calorie_count = calories), client)
 
+
 def add_prices(meals):
     return chat(PROMPT_PRICES + "# INGREDIENT_PRICES: " + content + "# MEALS WITH MAIN INGREDIENTS IN THEM: " + meals, client)
-
 def get_budget_adj(budget_in_bgn):
     if(budget_in_bgn <= 70):
         return "very very cheap"
@@ -61,43 +61,12 @@ def get_budget_adj(budget_in_bgn):
         return "decent"
     return "higher"
 
-def instructions_and_object(txt):
-    return chat("generate a `const meals` JS OBJECT, AND GENARATE TO EACH ENTRY FOR EACH MEAL EXPLAINATION FOR PREPARATION INSTRUCTIONS AND TIME NEEDED. # **do this for every entry in the input from beginning to end so that the object contains all the info FOR SURE**" + txt, client)
+
+def with_explanation(data):
+    return chat("return a new table, with the same things like this one. but add a column: preparation instructions and time. order by price, and return the 10 middle entries. MAKE YOUR RESPONSE START AND AND WITH THE TABLE, NO ADDITIONAL META TEXT. NO NOTE" + data, client)
+
 
 meals = meals_ingredients(count, ingredient_limit, price, calories)
-# print(meals)
-
-
-
-# print("\n\n\n\n\n\n\n\n\n\n\n")
 with_prices = (add_prices(meals))
-
-data =  (instructions_and_object(with_prices))
-print(data)
-
-def strip(js_string):
-    # Use a regular expression to find the "const meals = {...}" part
-    match = re.search(r'const meals\s*=\s*([.*?]);', js_string, re.DOTALL)
-    if match:
-        # Get the JSON-like string inside the match
-        meals_string = match.group(1)
-        
-        # Replace single quotes with double quotes (if any)
-        meals_string = meals_string.replace("'", '"')
-        
-        # Remove trailing commas before closing braces
-        meals_string = re.sub(r',\s*}', '}', meals_string)
-        meals_string = re.sub(r',\s*$', '', meals_string)  # Remove trailing comma at the end of the string if exists
-
-        try:
-            # Convert it to a Python dictionary
-            meals_dict = json.loads(meals_string)
-            return meals_dict
-        except json.JSONDecodeError as e:
-            print(f"JSON decode error: {e}")
-            return None
-    return None
-
-print("\n\n\n\n\n\n\n\n\n\n\n")
-print(strip(data))
-
+with_expl = (with_explanation(with_prices))
+print (with_expl)

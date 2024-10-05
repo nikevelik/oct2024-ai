@@ -41,7 +41,7 @@ function handleFormSubmit(formId, url, responseMessageId) {
         // Create the data object
         const requestData = {
             budget: parseFloat(budget),
-            preferences: preferences,
+            include: preferences,
             exclude: exclude,
             calories: parseInt(calories, 10)
         };
