@@ -1,0 +1,27 @@
+body {
+    margin: 0; /* Remove default margin */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrolling */
+    
+    background-image: url('fridge.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; /* Fixes the background in place */
+}
+
+.image-button {
+    width: 150px;               /* Button width */
+    height: 50px;               /* Button height */
+    border: none;               /* Remove borders */
+    background-image: url('button-default.jpg'); /* Default button image */
+    background-size: cover;     /* Ensures image covers the button area */
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;            /* Mouse pointer shows it's clickable */
+    transition: background-image 0.3s ease; /* Smooth transition */
+}
+
+.image-button:hover {
+    background-image: url('button-hover.jpg'); /* Image on hover */
+}
