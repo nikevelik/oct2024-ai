@@ -53,7 +53,7 @@ def chat(message, client):
                 "content": message,
             }
         ],
-        model="llama3-8b-8192",
+        model="gemma-7b-it",
     )
     return chat_completion.choices[0].message.content
 
@@ -114,15 +114,6 @@ def handle_post_data():
     include = data.get('include')
     exclude = data.get('exclude')
     calories = data.get('calories')
-
-    # Prepare a response message based on received data
-    response_message = (
-        f"Received weekly budget: {budget} BGN, "
-        f"personal preferences: {include}, "
-        f"things to exclude: {exclude}, "
-        f"daily calorie intake: {calories}"
-    )
-
 
     meals = meals_ingredients(count, ingredient_limit, budget, calories, exclude, include)
     with_prices = (add_prices(meals))
