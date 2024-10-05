@@ -2,109 +2,39 @@ body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    
-    background-image: url('fridge.jpg');
+    background-image: url('background.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-color: grey;
     background-attachment: fixed;
-}
-
-.shake-button {
-    width: 250px;
-    height: 250px;
-    background-image: url('cabbage.png');
-    background-color: transparent; 
-    background-size: inherit;
-    background-position: center;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-
-.shake-button:hover {
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
 }
 
 .form-container {
     position: relative;
     width: 100vw;
     height: 100vh;
-}
-
-input {
-    width: 200px;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-}
-
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
-
-.note-button {
-    width: 250px;
-    height: 250px;
-    background-image: url('note.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.note-button:hover {
-    opacity: 80%;
-}
-
-.form-container {
     text-align: center;
 }
 
 input {
-    padding: 10px;
-    margin: 10px;
-    width: 300px;
-    font-size: 16px;
-}
-
-.form-container {
-    text-align: center;
-}
-
-input {
-    padding: 10px;
-    margin: 10px;
     width: 150px;
     height: 200px;
+    padding: 10px;  /* Control the distance between text and borders */
+    margin: 10px;
     font-size: 16px;
     border-radius: 5px;
     border: none;
     background-image: url('note.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: transparent;
     background-position: center;
+    background-color: transparent;
     color: #333;
     font-weight: bold;
+    position: absolute;
+    text-align: center;  /* Centers the text horizontally */
+    line-height: 1.5;  /* Adjusts the spacing between lines */
 }
 
 input::placeholder {
@@ -114,38 +44,47 @@ input::placeholder {
 
 button {
     position: absolute;
-    top: 450px;
-    left: 50px;
+    top: 550px;
+    left: 600px;
     padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    height: 200px;
+    background-color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    opacity: 80%;
 }
 
+/* Field-specific positioning */
 #field1 {
-    top: 50px;
-    left: 50px;
+    height: 350px;
+    width: 350px;
+    top: 0;
+    left: 0px;
 }
 
 #field2 {
-    top: 150px;
-    left: 150px;
+    height: 350px;
+    width: 350px;
+    bottom: 10px;
+    left: 50px;
 }
 
 #field3 {
-    top: 250px;
-    left: 250px;
+    height: 350px;
+    width: 350px;
+    top: 0px;
+    right: 0px;
 }
 
 #field4 {
-    top: 350px;
-    left: 350px;
+    height: 350px;
+    width: 350px;
+    bottom: 10px;
+    right: 220px;
 }
 
 input:focus {
