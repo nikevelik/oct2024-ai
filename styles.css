@@ -25,9 +25,10 @@ textarea {
     padding: 20px;
     margin: 0px;
     font-size: 16px;
+    font-family: 'Indie Flower', cursive; /* Apply handwritten font */
     border-radius: 5px;
     border: none;
-    background-image: url('note.png');
+    background-image: url('note1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -39,7 +40,8 @@ textarea {
     line-height: 1.5;
     resize: none; /* Prevent resizing by the user */
     opacity: 0; /* Initially hidden (fully transparent) */
-    transition: opacity 1s ease-in-out; /* Smooth fade-in effect */
+    visibility: hidden; /* Hide the textarea initially */
+    transition: opacity 1s ease-in-out, visibility 0s 1s; /* Smooth fade-in effect, visibility delay matches the transition */
 }
 
 /* Placeholder text style */
@@ -48,55 +50,32 @@ textarea::placeholder {
     font-weight: bold;
 }
 
-/* Initially hide textareas except the first one */
-#field2, #field3, #field4, #submitButton {
-    display: none; /* Hidden until the previous one has input */
-    transition: opacity 3s ease-in-out;
-}
-
-/* Flowy animation */
-@keyframes flow {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-/* Class to apply the flowy effect */
-.flowy {
-    animation: flow 3s ease-in-out infinite; /* Infinite smooth flowing animation */
-}
-
-/* When textareas become visible, apply opacity */
-.fade-in {
-    opacity: 1; /* Fully visible */
-    
-}
-
+/* Other styles for specific fields */
 #field1 {
-    height: 230px;
-    width: 230px;
-    top: 220px;
-    left: 0px;
+    height: 150px;
+    width: 150px;
+    top: 250px;
+    left: 20px;
 }
 
 #field2 {
-    height: 230px;
-    width: 230px;
-    bottom: -20px;
-    left: 320px;
+    height: 150px;
+    width: 150px;
+    bottom: 20px;
+    left: 300px;
 }
 
 #field3 {
-    height: 230px;
-    width: 230px;
-    top: 150px;
-    right: 390px;
+    height: 150px;
+    width: 150px;
+    top: 200px;
+    right: 420px;
 }
 
 #field4 {
-    height: 230px;
-    width: 230px;
-    top: -15px;
+    height: 150px;
+    width: 150px;
+    top: 20px;
     right: 20px;
 }
 
@@ -116,29 +95,29 @@ textarea:focus {
     width: 100px;
 }
 
-
 /* Style for the submit button */
 .button {
-    width: 200px;
-    
+    width: 100px;
+    height: 100px;
     background-image: url('redbutton.webp');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: transparent;
     border: none;
     position: absolute;
-    top: 500px; /* Adjust the position */
-    left: 50%;  /* Adjust the position */
+    top: 470px; /* Adjust the position */
+    left: 750px;  /* Adjust the position */
     transform: translateX(-50%); /* Center the button horizontally */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Hidden initially */
+    transition: opacity 1s ease-in-out, visibility 0s 1s;
 }
 
-#error-message {
-    position: absolute;
-    top: 650px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    color: red;
+.fade-in {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-in-out, visibility 0s;
 }
 
 /* Splash screen styling */
@@ -182,25 +161,45 @@ textarea:focus {
 #start-button:hover {
     background-color: #0056b3;
 }
-
-/* Make sure the main content is hidden initially */
-#main-content {
-    display: none;
+/* Apply swaying effect to the image with size and position adjustments */
+.swaying-image {
+    width: 400px; /* Adjust the width */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Make it positionable */
+    bottom: -150px; /* Adjust vertical position */
+    left: 770px; /* Center horizontally */
+    transform: translateX(-50%); /* Center the image horizontally */
+    
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Hidden initially */
+    transform-origin: center bottom; /* Adjust the pivot point for swaying */
+    animation: sway 3s ease-in-out infinite; /* Infinite swaying effect */
+    transition: opacity 1s ease-in-out, visibility 0s 1s;
 }
 
-/* Flowy animation for smooth floating effect */
-@keyframes flow {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
+/* Keyframes for swaying effect */
+@keyframes sway {
+    0% {
+        transform: translateX(-50%) rotate(0deg); /* Start position */
+    }
+    25% {
+        transform: translateX(-50%) rotate(-5deg); /* Rotate counter-clockwise */
+    }
+    50% {
+        transform: translateX(-50%) rotate(0deg); /* Back to the center */
+    }
+    75% {
+        transform: translateX(-50%) rotate(5deg); /* Rotate clockwise */
+    }
+    100% {
+        transform: translateX(-50%) rotate(0deg); /* Back to the center */
+    }
 }
 
-/* Class to apply the flowy effect */
-.flowy {
-    animation: flow 3s ease-in-out infinite; /* Infinite smooth flowing animation */
-}
 
-/* Initially hide all textareas except the first one */
-#field2, #field3, #field4 {
-    display: none; /* Hidden until previous textarea is filled */
+/* Fade-in effect for image and button */
+.fade-in {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-in-out, visibility 0s;
 }
