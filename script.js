@@ -58,8 +58,32 @@ window.onload = function() {
     showSubmitButtonAndImage();
 };
 
+// Select DOM elements
+const popupOverlay = document.getElementById('popupOverlay');
+
+// Close pop-up when clicking outside the content
+popupOverlay.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) {
+        popupOverlay.style.display = 'none';
+    }
+});
 
 
+const submitButton = document.getElementById('submitButton');
+submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    // how to call it
+    calories = document.getElementById('field1');
+    budget = document.getElementById('field2');
+    exclude = document.getElementById('field3');
+    include = document.getElementById('field4');
+    console.log(calories.value, budget.value, exclude.value, include.value);
+    f(200, "beans", "meat", 2000).then(function(data){
+        const popupContent = document.getElementsByClassName("popup-content")[0];
+        popupContent.textContent = JSON.stringify(data, null, 4);
+        popupOverlay.style.display = 'flex'; // Show the overlay (centered using flex)
+    });
+});
 
 
 
@@ -86,10 +110,3 @@ async function f(budget, include, exclude, calories) {
     const result = await response.json();
     return result;
 }
-
-
-// how to call it
-f(199, "I WANT RICE", "I HATE MEAT", 2000).then(function(data){
-  // what to do with the result data
-  console.log(data);
-});
