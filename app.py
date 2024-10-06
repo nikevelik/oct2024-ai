@@ -133,15 +133,13 @@ def handle_post_data():
         meal_dict = {
         "mandja_name": columns[0],
         "ingredients": columns[1].split(', '),
-        "price": float(columns[2]),
+        "price": (columns[2]),
         "instructions": columns[3]
         }
         mandja_list.append(meal_dict)
 
-    mandja_json = json.dumps(mandja_list, indent=4)
-    
-    #print(mandja_json)
-    return jsonify({'message': with_expl})
+    #print(json.dumps(mandja_list, indent=4))
+    return jsonify({'message': mandja_list})
 
 if __name__ == '__main__':
     app.run(debug=True)
