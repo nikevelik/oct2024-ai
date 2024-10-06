@@ -57,50 +57,39 @@ window.onload = function() {
     // Show the submit button and the image only after the last textarea has input
     showSubmitButtonAndImage();
 };
-// Ensure form submission is handled properly
-function handleFormSubmit(formId, url, responseMessageId) {
-    const form = document.getElementById(formId);
 
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Prevent default form submission
 
-        // Collect data from the form fields
-        const budget = document.getElementById('field2').value;
-        const preferences = document.getElementById('field4').value;
-        const exclude = document.getElementById('field3').value;
-        const calories = document.getElementById('field1').value;
 
-        // Create the data object
-        const requestData = {
-            budget: parseFloat(budget),
-            include: preferences,
-            exclude: exclude,
-            calories: parseInt(calories, 10)
-        };
 
-        try {
-            // Send POST request to backend
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData) // Send data as JSON
-            });
 
-            // Handle server response
-            const result = await response.json();
-            document.getElementById(responseMessageId).innerText = result.message;
 
-            // Optionally update AI response section
-            document.getElementById('ai-response').innerText = "Result from AI: " + result.data;
 
-        } catch (error) {
-            console.error('Error:', error);
-            document.getElementById(responseMessageId).innerText = 'An error occurred. Please try again.';
-        }
+
+
+
+
+
+
+// function f makes request to the backend
+async function f(budget, include, exclude, calories) {
+      const response = await fetch('http://127.0.0.1:5000/post-data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            budget,
+            include,
+            exclude,
+            calories
+        })
     });
+
+    const result = await response.json();
+    return result;
 }
 
-// Call the function
-handleFormSubmit('textForm', 'http://127.0.0.1:5000/post-data', 'responseMessage');
+
+// how to call it
+f(199, "I WANT RICE", "I HATE MEAT", 2000).then(function(data){
+  // what to do with the result data
+  console.log(data);
+});
