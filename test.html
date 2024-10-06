@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Request Example</title>
+</head>
+<body>
+    <h1>Send a POST Request</h1>
+    <form id="postForm">
+        <label for="budgetInput">Weekly Budget (BGN):</label>
+        <input type="number" id="budgetInput" name="budget" step="0.01" required><br><br>
+
+        <label for="preferencesInput">Personal Preferences:</label>
+        <textarea id="preferencesInput" name="preferences" required></textarea><br><br>
+
+        <label for="excludeInput">Things to Not Include:</label>
+        <textarea id="excludeInput" name="exclude" required></textarea><br><br>
+
+        <label for="caloriesInput">Daily Calorie Intake:</label>
+        <input type="number" id="caloriesInput" name="calories" min="1" required><br><br>
+
+        <button type="submit">Send</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script>
+function handleFormSubmit(formId, url, responseMessageId) {
+    const form = document.getElementById(formId);
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        // Collect data from the form fields
+        const budget = document.getElementById('budgetInput').value;
+        const preferences = document.getElementById('preferencesInput').value;
+        const exclude = document.getElementById('excludeInput').value;
+        const calories = document.getElementById('caloriesInput').value;
+
+        // Create the data object
+        const requestData = {
+            budget: parseFloat(budget),
+            include: preferences,
+            exclude: exclude,
+            calories: parseInt(calories, 10)
+        };
+
+        // Send the POST request
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        // Handle the response
+        const result = await response.json();
+        document.getElementById(responseMessageId).innerText = JSON.stringify(result.message);
+    });
+}
+
+// Example usage
+handleFormSubmit('postForm', 'http://127.0.0.1:5000/post-data', 'responseMessage');
+    </script>
+</body>
+</html>
