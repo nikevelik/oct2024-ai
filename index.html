@@ -6,17 +6,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="form-container">
-        <form id="textForm">
-            <textarea name="field1" id="field1" placeholder="Calories..." maxlength="200" required></textarea><br>
-            <textarea name="field2" id="field2" placeholder="Budget (BGN)..." maxlength="200" required></textarea><br>
-            <textarea name="field3" id="field3" placeholder="What foods to exclude?" maxlength="200" required></textarea><br>
-            <textarea name="field4" id="field4" placeholder="What foods to include?" maxlength="200" required></textarea><br>
-            <button type="submit" class="button" id="submitButton"></button>
-        </form>        
-        <p id="error-message" style="color: red;"></p>
-        <img id="error-image" src="light.webp" style="display:none; position: absolute; top: 600px; left: 50%;" />
+
+    <!-- Splash screen with a button -->
+    <div id="splash-screen">
+        <h1>Welcome!</h1>
+        <button id="start-button">Open my fridge!</button> <!-- Button to trigger the fade out -->
     </div>
-    <script type="module" src="script.js"></script>
+
+    <!-- Main content (hidden until splash screen fades out) -->
+    <div id="main-content" style="display:none;">
+        <div class="form-container">
+            <form id="textForm">
+                <textarea name="field1" id="field1" placeholder="Calories..." maxlength="200" required></textarea><br>
+                <textarea name="field2" id="field2" placeholder="Budget (BGN)..." maxlength="200" required></textarea><br>
+                <textarea name="field3" id="field3" placeholder="What foods to exclude?" maxlength="200" required></textarea><br>
+                <textarea name="field4" id="field4" placeholder="What foods to include?" maxlength="200" required></textarea><br>
+                <button type="submit" class="button" id="submitButton">Submit</button>
+            </form>        
+            <p id="error-message" style="color: red;"></p>
+        </div>
+
+        <div class="overlay" id="overlay"></div>
+        <div class="slide-in" id="slide-in">
+            <img src="background.png" alt="Result Image">
+            <div id="ai-response"></div>
+        </div>
+
+        <p id="responseMessage"></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
