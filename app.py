@@ -115,15 +115,6 @@ def handle_post_data():
     exclude = data.get('exclude')
     calories = data.get('calories')
 
-    # Prepare a response message based on received data
-    response_message = (
-        f"Received weekly budget: {budget} BGN, "
-        f"personal preferences: {include}, "
-        f"things to exclude: {exclude}, "
-        f"daily calorie intake: {calories}"
-    )
-
-
     meals = meals_ingredients(count, ingredient_limit, budget, calories, exclude, include)
     with_prices = (add_prices(meals))
     with_expl = (with_explanation(with_prices))
