@@ -53,7 +53,7 @@ def chat(message, client):
                 "content": message,
             }
         ],
-        model="llama3-8b-8192",
+        model="gemma-7b-it",
     )
     return chat_completion.choices[0].message.content
 
@@ -127,9 +127,29 @@ def handle_post_data():
     meals = meals_ingredients(count, ingredient_limit, budget, calories, exclude, include)
     with_prices = (add_prices(meals))
     with_expl = (with_explanation(with_prices))
-# print (with_expl)
 
-    # Return the response in JSON format
+
+    # To JSON
+    rows = with_expl.strip().split("\n")[2:]
+    mandja_list = []
+
+    for row in rows:
+        columns = []
+        for col in row.split('|'):
+            if col:
+                columns.append(col.strip())
+
+        meal_dict = {
+        "mandja_name": columns[0],
+        "ingredients": columns[1].split(', '),
+        "price": float(columns[2]),
+        "instructions": columns[3]
+        }
+        mandja_list.append(meal_dict)
+
+    mandja_json = json.dumps(mandja_list, indent=4)
+    
+    #print(mandja_json)
     return jsonify({'message': with_expl})
 
 if __name__ == '__main__':
